@@ -36,31 +36,14 @@
     group: vagrant
     mode: 0700
 
-- name: Get Vagrant's public key.
-  get_url:
-    url: https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
+- copy:
+    src: {{local_home}}/.ssh/id_rsa.pub
     dest: /home/vagrant/.ssh/authorized_keys
     owner: vagrant
     group: vagrant
     mode: 0600
 
-# VirtualBox tools installation.
-- name: Check if VirtualBox is running the guest VM.
-  stat: path=/home/vagrant/.vbox_version
-  register: virtualbox_check
-
 - include: virtualbox.yml
-  when: virtualbox_check.stat.exists
-
-# VMware tools installation.
-- name: Check if VMWare is running the guest VM.
-  shell: "cat /proc/scsi/scsi | grep VMware"
-  changed_when: false
-  failed_when: false
-  register: vmware_check
-
-- include: vmware.yml
-  when: vmware_check.rc == 0
 
 # Cleanup tasks.
 - name: Remove unneeded packages.

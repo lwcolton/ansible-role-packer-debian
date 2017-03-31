@@ -2,10 +2,8 @@
 dependencies: []
 
 galaxy_info:
-  author: geerlingguy
-  description: Debian/Ubuntu configuration for Packer.
-  company: "Midwestern Mac, LLC"
-  license: "license (BSD, MIT)"
+  author: lwcolton
+  description: Debian/Ubuntu configuration for Packer
   min_ansible_version: 1.8
   platforms:
     - name: Debian
@@ -14,8 +12,3 @@ galaxy_info:
     - name: Ubuntu
       versions:
       - all
-  galaxy_tags:
-    - cloud
-    - system
-    - packaging
-    - development
